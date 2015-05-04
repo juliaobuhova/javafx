@@ -1,0 +1,20 @@
+.buttons {
+    -fx-border-width: 2;
+    -fx-border-color: navy;
+    -fx-background-color: #F5FFFA;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+.pane {
+    -fx-background-color: #FFE4E1;
+}
+
+.label {
+    -fx-text-fill: navy;
+    -fx-font-weight: bold;
+}
+
+.field {
+    -fx-border-color: black;
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="400.0" styleClass="pane" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="25.0" layoutY="62.0" text="ФИО" />
+      <Label layoutX="22.0" layoutY="104.0" text="Номер телефона" />
+      <TextField layoutX="64.0" layoutY="58.0" prefHeight="25.0" prefWidth="314.0" styleClass="field" />
+      <TextField layoutX="141.0" layoutY="100.0" prefHeight="25.0" prefWidth="238.0" styleClass="field" />
+      <Button layoutX="82.0" layoutY="171.0" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" styleClass="buttons" text="OK" />
+      <Button layoutX="266.0" layoutY="171.0" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" styleClass="buttons" text="Cancel" />
+   </children>
+</AnchorPane>
