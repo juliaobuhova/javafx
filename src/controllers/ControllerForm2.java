@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import object.Client;
 
+import java.io.IOException;
+
 /**
  * Created by Юлия on 07.05.2015.
  */
@@ -40,7 +42,7 @@ public class ControllerForm2 {
     }
 
     @FXML
-    public void OK() {
+    public void OK() throws IOException {
         Client client = new Client(Integer.parseInt(idNumber.getText()), name.getText(), surname.getText());
         ModifyCollectionClients clients = new ModifyCollectionClients();
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -51,7 +53,10 @@ public class ControllerForm2 {
             clients.update(client);
         }
         stage.close();
-        ControllerForm1 control = new ControllerForm1();
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("/windows/form1.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/windows/form1.fxml"));
+        ControllerForm1 control = loader.getController();
         control.refresh();
       //  table = control.getTable();
      //   idNumberColumn = control.getIdNumberColumn();

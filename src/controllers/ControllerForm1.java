@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import database.ModifyCollectionClients;
 import javafx.scene.control.Label;
 import object.Client;
@@ -50,7 +51,9 @@ public class ControllerForm1 {
     public void refresh() {
         ModifyCollectionClients clients = new ModifyCollectionClients();
         clients.FillCollection();
-        getTable().getColumns().clear();
+        getTable().getProperties().put(TableViewSkinBase.REFRESH, Boolean.TRUE);
+      //  getTable().getColumns().clear();
+      //  getTable().getColumns().addAll;
       //  getTable().setItems(clients.getClients());
     }
 
