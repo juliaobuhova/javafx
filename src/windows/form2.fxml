@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="400.0" styleClass="pane" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerForm2">
+   <children>
+      <Label layoutX="25.0" layoutY="36.0" text="Id number" />
+      <Label layoutX="22.0" layoutY="79.0" text="Name" />
+      <TextField fx:id="idNumber" layoutX="92.0" layoutY="31.0" prefHeight="27.0" prefWidth="286.0" styleClass="field" />
+      <TextField fx:id="name" layoutX="92.0" layoutY="74.0" prefHeight="27.0" prefWidth="286.0" styleClass="field" />
+      <Button layoutX="82.0" layoutY="171.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#OK" prefWidth="60.0" styleClass="buttons" text="OK" />
+      <Button fx:id="closeButton" layoutX="266.0" layoutY="171.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Exit" prefWidth="60.0" styleClass="buttons" text="Cancel" />
+      <TextField fx:id="surname" layoutX="92.0" layoutY="120.0" prefHeight="27.0" prefWidth="286.0" styleClass="field" />
+      <Label layoutX="22.0" layoutY="125.0" text="Surname" />
+   </children>
+</AnchorPane>
