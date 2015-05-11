@@ -62,7 +62,7 @@
          <children>
             <FlowPane alignment="CENTER" prefHeight="225.0" prefWidth="505.0" AnchorPane.bottomAnchor="-35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="table" prefHeight="226.0" prefWidth="439.0">
+                  <TableView fx:id="table" editable="true" prefHeight="226.0" prefWidth="439.0">
                     <columns>
                       <TableColumn fx:id="idNumberColumn" prefWidth="124.0" text="Id number" />
                       <TableColumn fx:id="firstNameColumn" prefWidth="147.0" text="Name" />

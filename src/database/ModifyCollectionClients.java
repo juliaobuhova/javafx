@@ -1,6 +1,7 @@
 package database;
 
 import abstraction.Intrfc;
+import controllers.ControllerForm1;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import object.Client;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
  */
 public class ModifyCollectionClients implements Intrfc {
     private ObservableList<Client> clients = FXCollections.observableArrayList();
+    private ControllerForm1 control;
 
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/database";
@@ -45,6 +47,8 @@ public class ModifyCollectionClients implements Intrfc {
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        refreshTableView();
+        updateAmountOfRecords();
     }
 
     @Override
@@ -61,7 +65,8 @@ public class ModifyCollectionClients implements Intrfc {
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        refreshTableView();
+        updateAmountOfRecords();
     }
 
     @Override
@@ -73,15 +78,29 @@ public class ModifyCollectionClients implements Intrfc {
             e.printStackTrace();
         }
         clients.remove(client);
+        refreshTableView();
+        updateAmountOfRecords();
     }
 
-    public void FillCollection () {
+    public void fillCollection () {
         try {
-            new SelectFromDB().selectRecordsFromDbClientsTable(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), clients);
+            new SelectFromDB().selectRecordsFromDbClientsTable(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(),
+                    getDB_PASSWORD(), clients);
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    public void updateAmountOfRecords () {
+        control.getAmountOfRecords().setText("Количество записей: " + control.getTable().getItems().size());
+    }
+
+    public void refreshTableView() {
+        control.refresh();
+    }
+
+    public void setController (ControllerForm1 controller) {
+        control = controller;
+    }
 }

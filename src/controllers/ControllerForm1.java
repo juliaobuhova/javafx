@@ -1,11 +1,8 @@
 package controllers;
 
-import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import database.ModifyCollectionClients;
 import javafx.scene.control.Label;
 import object.Client;
-import start.Main;
-//import database.SelectFromDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +20,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ControllerForm1 {
-  //  private ModifyCollectionClients clients = new ModifyCollectionClients();
+    private ModifyCollectionClients clients = new ModifyCollectionClients();
+    private ControllerForm2 childrenForm2;
+    private ControllerForm3 childrenForm3;
 
     @FXML
     private TableView<Client> table;
@@ -40,28 +39,26 @@ public class ControllerForm1 {
 
     @FXML
     private void initialize() {
-        ModifyCollectionClients clients = new ModifyCollectionClients();
-        getIdNumberColumn().setCellValueFactory(new PropertyValueFactory<Client, Integer>("idNumber"));
-        getFirstNameColumn().setCellValueFactory(new PropertyValueFactory<Client, String>("firstName"));
-        getLastNameColumn().setCellValueFactory(new PropertyValueFactory<Client, String>("lastName"));
-        clients.FillCollection();
+        getIdNumberColumn().setCellValueFactory(new PropertyValueFactory<>("idNumber"));
+        getFirstNameColumn().setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        getLastNameColumn().setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        clients.fillCollection();
         getTable().setItems(clients.getClients());
+        getAmountOfRecords().setText("Количество записей: " + getTable().getItems().size());
     }
 
     public void refresh() {
-        ModifyCollectionClients clients = new ModifyCollectionClients();
-        clients.FillCollection();
-        getTable().getProperties().put(TableViewSkinBase.REFRESH, Boolean.TRUE);
-      //  getTable().getColumns().clear();
-      //  getTable().getColumns().addAll;
-      //  getTable().setItems(clients.getClients());
+        getTable().getItems().clear();
+        clients.fillCollection();
+        getTable().setItems(clients.getClients());
+        getAmountOfRecords().setText("Количество записей: " + getTable().getItems().size());
     }
 
     public void SearchData(ActionEvent actionEvent) {
         getIdNumberColumn().setCellValueFactory(new PropertyValueFactory<Client, Integer>("idNumber"));
         getFirstNameColumn().setCellValueFactory(new PropertyValueFactory<Client, String>("firstName"));
         getLastNameColumn().setCellValueFactory(new PropertyValueFactory<Client, String>("lastName"));
-        Main main = new Main();
+     //   Main main = new Main();
      /*   try {
            // new SelectFromDB().selectRecordsFromDbClientsTable(main.getDB_DRIVER(), main.getDB_CONNECTION(), main.getDB_USER(),
             //        main.getDB_PASSWORD(), main.getClients(), search.getText());
@@ -75,7 +72,12 @@ public class ControllerForm1 {
     public void ShowForm2Add(ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
-            Parent form2 = FXMLLoader.load(getClass().getResource("/windows/form2.fxml"));
+            ControllerForm2 controller = new ControllerForm2();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/windows/form2.fxml"));
+            loader.setController(controller);
+            Parent form2 = loader.load();
+            childrenForm2 = loader.getController();
+            childrenForm2.setParent(this);
             stage.setTitle("Add");
             stage.setMinHeight(212);
             stage.setMinWidth(400);
@@ -94,7 +96,12 @@ public class ControllerForm1 {
     public void ShowForm2Update(ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
-            Parent form2 = FXMLLoader.load(getClass().getResource("/windows/form2.fxml"));
+            ControllerForm2 controller = new ControllerForm2();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/windows/form2.fxml"));
+            loader.setController(controller);
+            Parent form2 = loader.load();
+            childrenForm2 = loader.getController();
+            childrenForm2.setParent(this);
             stage.setTitle("Update");
             stage.setMinHeight(212);
             stage.setMinWidth(400);
@@ -104,7 +111,6 @@ public class ControllerForm1 {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,7 +119,12 @@ public class ControllerForm1 {
     public void ShowForm3(ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
-            Parent form3 = FXMLLoader.load(getClass().getResource("/windows/form3.fxml"));
+            ControllerForm3 controller = new ControllerForm3();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/windows/form3.fxml"));
+            loader.setController(controller);
+            Parent form3 = loader.load();
+            childrenForm3 = loader.getController();
+            childrenForm3.setParent(this);
             stage.setTitle("Remove");
             stage.setMinHeight(212);
             stage.setMinWidth(400);

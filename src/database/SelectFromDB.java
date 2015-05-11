@@ -38,4 +38,11 @@ public class SelectFromDB {
             }
         }
     }
+
+    public void select(String DB_DRIVER, String DB_CONNECTION, String DB_USER, String DB_PASSWORD, String search) {
+        Connection dbConnection = null;
+        Statement statement = null;
+        DBConnection connection = new DBConnection();
+
+    }
 }

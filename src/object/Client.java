@@ -6,9 +6,9 @@ public class Client {
     private String lastName;
 
     public Client(int idNumber, String firstName, String lastName) {
-        this.setIdNumber(idNumber);
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
+        this.idNumber = idNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     @Override
@@ -39,22 +39,15 @@ public class Client {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
-    }
 
-    public int getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(int idNumber) {
-        this.idNumber = idNumber;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public int getIdNumber() {
+        return idNumber;
     }
 
     public String getLastName() {
@@ -65,4 +58,11 @@ public class Client {
         this.lastName = lastName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setIdNumber(int idNumber) {
+        this.idNumber = idNumber;
+    }
 }
