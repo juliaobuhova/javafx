@@ -1,14 +1,20 @@
 package object;
 
-public class Client {
-    private int idNumber;
-    private String firstName;
-    private String lastName;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
-    public Client(int idNumber, String firstName, String lastName) {
-        this.idNumber = idNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
+public class Client {
+    private SimpleIntegerProperty idNumber;
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty lastName;
+
+    public Client () {}
+
+    public Client(int iNumber, String fName, String lName) {
+        this.idNumber = new SimpleIntegerProperty(iNumber);
+        this.firstName = new SimpleStringProperty(fName);
+        this.lastName = new SimpleStringProperty(lName);
+
     }
 
     @Override
@@ -26,7 +32,7 @@ public class Client {
 
     @Override
     public int hashCode() {
-        int result = idNumber;
+        int result = idNumber != null ? idNumber.hashCode() : 0;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         return result;
@@ -39,30 +45,30 @@ public class Client {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
-
-    }
-
-    public String getFirstName() {
-        return firstName;
     }
 
     public int getIdNumber() {
-        return idNumber;
+        return idNumber.get();
+    }
+
+    public void setIdNumber(int iNumber) {
+        idNumber.set(iNumber);
+    }
+
+    public String getFirstName() {
+        return firstName.get();
+    }
+
+    public void setFirstName(String fName) {
+        firstName.set(fName);
     }
 
     public String getLastName() {
-        return lastName;
+        return lastName.get();
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lName) {
+        lastName.set(lName);
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setIdNumber(int idNumber) {
-        this.idNumber = idNumber;
-    }
 }

@@ -1,6 +1,5 @@
 package controllers;
 
-import database.ModifyCollectionClients;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -10,11 +9,9 @@ import object.Client;
  * Created by Юлия on 07.05.2015.
  */
 public class ControllerForm2 {
-    private ModifyCollectionClients clients = new ModifyCollectionClients();
-    private ControllerForm1 parent;
+    private Client client;
+    private Stage stage;
 
-    @FXML
-    private Button closeButton;
     @FXML
     private TextField idNumber;
     @FXML
@@ -22,29 +19,61 @@ public class ControllerForm2 {
     @FXML
     private TextField surname;
 
-    @FXML
     public void Exit() {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 
-    @FXML
     public void OK() {
-        clients.fillCollection();
-        Client client = new Client(Integer.parseInt(idNumber.getText()), name.getText(), surname.getText());
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        if (stage.getTitle() == "Add") {
-            clients.setController(parent);
-            clients.insert(client);
-        }
-        else {
-            clients.setController(parent);
-            clients.update(client);
-        }
+        client = new Client(getIdNumber(), getName(), getSurname());
         stage.close();
     }
 
-    public void setParent (ControllerForm1 controller) {
-        parent = controller;
+    public int getIdNumber() {
+        return Integer.parseInt(idNumber.getText());
     }
+
+    public void setIdNumber(int idNumber) {
+        this.idNumber.setText(Integer.toString(idNumber));
+    }
+
+    public String getName() {
+        return name.getText();
+    }
+
+    public void setName(String name) {
+        this.name.setText(name);
+    }
+
+    public String getSurname() {
+        return surname.getText();
+    }
+
+    public void setSurname(String surname) {
+        this.surname.setText(surname);
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public TextField getFieldIdNumber() {
+        return idNumber;
+    }
+
+    public TextField getFieldName() {
+        return name;
+    }
+
+    public TextField getFieldSurname() {
+        return surname;
+    }
+
 }

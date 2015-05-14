@@ -12,7 +12,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#ShowForm2Add" prefWidth="90.0" text="ADD" textFill="#337ca1">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#addClient" prefWidth="90.0" text="ADD" textFill="#337ca1">
                      <HBox.margin>
                         <Insets bottom="15.0" left="35.0" right="35.0" top="15.0" />
                      </HBox.margin>
@@ -20,7 +20,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#ShowForm2Update" prefWidth="90.0" text="UPDATE" textFill="#265cc6">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateClient" prefWidth="90.0" text="UPDATE" textFill="#265cc6">
                      <HBox.margin>
                         <Insets bottom="15.0" left="35.0" right="35.0" top="15.0" />
                      </HBox.margin>
@@ -28,7 +28,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#ShowForm3" prefWidth="90.0" text="REMOVE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#removeClient" prefWidth="90.0" text="REMOVE">
                      <HBox.margin>
                         <Insets bottom="15.0" left="35.0" right="35.0" top="15.0" />
                      </HBox.margin>
