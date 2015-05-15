@@ -8,8 +8,6 @@ public class Client {
     private SimpleStringProperty firstName;
     private SimpleStringProperty lastName;
 
-    public Client () {}
-
     public Client(int iNumber, String fName, String lName) {
         this.idNumber = new SimpleIntegerProperty(iNumber);
         this.firstName = new SimpleStringProperty(fName);

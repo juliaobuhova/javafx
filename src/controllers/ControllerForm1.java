@@ -68,7 +68,7 @@ public class ControllerForm1 {
             stage.setResizable(false);
             stage.getIcons().add(new Image("/style/icon.png"));
             stage.setScene(new Scene(form2));
-            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initModality(Modality.APPLICATION_MODAL);
             controllerForm2.setStage(stage);
         }
         catch (IOException e) {
@@ -86,9 +86,7 @@ public class ControllerForm1 {
         table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (event.getClickCount() == 1) {
-                    controllerForm2.setClient((Client) table.getSelectionModel().getSelectedItem());
-                }
+                    controllerForm2.setClient(table.getSelectionModel().getSelectedItem());
             }
         });
     }
@@ -101,26 +99,23 @@ public class ControllerForm1 {
     }
 
     public void updateClient() {
-        controllerForm2.setIdNumber(controllerForm2.getClient().getIdNumber());
-        controllerForm2.setName(controllerForm2.getClient().getFirstName());
-        controllerForm2.setSurname(controllerForm2.getClient().getLastName());
-        stage.showAndWait();
         if (controllerForm2.getClient() != null) {
-            clients.update(controllerForm2.getClient());
-            controllerForm2.setClient(new Client());
+            controllerForm2.setIdNumber(controllerForm2.getClient().getIdNumber());
+            controllerForm2.setName(controllerForm2.getClient().getFirstName());
+            controllerForm2.setSurname(controllerForm2.getClient().getLastName());
         }
+        stage.showAndWait();
+        if (controllerForm2.getClient() != null) { clients.update(controllerForm2.getClient()); }
+        controllerForm2.setClient(null);
         table.getColumns().clear();
         table.getColumns().addAll(idNumberColumn, firstNameColumn, lastNameColumn);
     }
 
     public void addClient() {
-        controllerForm2.getFieldIdNumber().setText("");
-        controllerForm2.getFieldName().setText("");
-        controllerForm2.getFieldSurname().setText("");
         stage.showAndWait();
         if (controllerForm2.getClient() != null) {
             clients.insert(controllerForm2.getClient());
-            controllerForm2.setClient(new Client());
+            controllerForm2.setClient(null);
         }
     }
 

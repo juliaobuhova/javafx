@@ -20,11 +20,19 @@ public class ControllerForm2 {
     private TextField surname;
 
     public void Exit() {
+        idNumber.setText("");
+        name.setText("");
+        surname.setText("");
         stage.close();
     }
 
     public void OK() {
-        client = new Client(getIdNumber(), getName(), getSurname());
+        if (idNumber.getLength() != 0 && name.getLength() != 0 && surname.getLength() != 0) {
+            client = new Client(getIdNumber(), getName(), getSurname());
+        }
+        idNumber.setText("");
+        name.setText("");
+        surname.setText("");
         stage.close();
     }
 
@@ -62,18 +70,6 @@ public class ControllerForm2 {
 
     public void setStage(Stage stage) {
         this.stage = stage;
-    }
-
-    public TextField getFieldIdNumber() {
-        return idNumber;
-    }
-
-    public TextField getFieldName() {
-        return name;
-    }
-
-    public TextField getFieldSurname() {
-        return surname;
     }
 
 }
