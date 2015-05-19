@@ -9,14 +9,13 @@ import java.sql.SQLException;
 import static java.lang.System.out;
 
 public class ModifyTableClients {
-    public void insert(String DB_DRIVER, String DB_CONNECTION, String DB_USER, String DB_PASSWORD,
+    public static void insert(String DB_DRIVER, String DB_CONNECTION, String DB_USER, String DB_PASSWORD,
                               Client client) throws SQLException, ClassNotFoundException {
         Connection dbConnection = null;
         PreparedStatement statement = null;
-        DBConnection connection = new DBConnection();
         String request = "INSERT INTO clients (id_number, first_name, last_name) VALUES (?, ?, ?)";
         try {
-            dbConnection = connection.getDBConnection(DB_DRIVER, DB_CONNECTION, DB_USER, DB_PASSWORD);
+            dbConnection = DBConnection.getDBConnection(DB_DRIVER, DB_CONNECTION, DB_USER, DB_PASSWORD);
             statement = dbConnection.prepareStatement(request);
             statement.setInt(1, client.getIdNumber());
             statement.setString(2, client.getFirstName());
@@ -36,14 +35,13 @@ public class ModifyTableClients {
         }
     }
 
-    public void remove(String DB_DRIVER, String DB_CONNECTION, String DB_USER, String DB_PASSWORD,
+    public static void remove(String DB_DRIVER, String DB_CONNECTION, String DB_USER, String DB_PASSWORD,
                              int idNumber) throws SQLException, ClassNotFoundException {
         Connection dbConnection = null;
         PreparedStatement statement = null;
-        DBConnection connection = new DBConnection();
         String request = "DELETE FROM clients WHERE id_number=?";
         try {
-            dbConnection = connection.getDBConnection(DB_DRIVER, DB_CONNECTION, DB_USER, DB_PASSWORD);
+            dbConnection = DBConnection.getDBConnection(DB_DRIVER, DB_CONNECTION, DB_USER, DB_PASSWORD);
             statement = dbConnection.prepareStatement(request);
             statement.setInt(1, idNumber);
             statement.execute();
@@ -61,14 +59,13 @@ public class ModifyTableClients {
         }
     }
 
-    public void update(String DB_DRIVER, String DB_CONNECTION, String DB_USER, String DB_PASSWORD,
+    public static void update(String DB_DRIVER, String DB_CONNECTION, String DB_USER, String DB_PASSWORD,
                              Client client) throws SQLException, ClassNotFoundException {
         Connection dbConnection = null;
         PreparedStatement statement = null;
-        DBConnection connection = new DBConnection();
         String request = "UPDATE clients SET first_name=?, last_name=? WHERE id_number=?";
         try {
-            dbConnection = connection.getDBConnection(DB_DRIVER, DB_CONNECTION, DB_USER, DB_PASSWORD);
+            dbConnection = DBConnection.getDBConnection(DB_DRIVER, DB_CONNECTION, DB_USER, DB_PASSWORD);
             statement = dbConnection.prepareStatement(request);
             statement.setString(1, client.getFirstName());
             statement.setString(2, client.getLastName());

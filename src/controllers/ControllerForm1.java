@@ -1,7 +1,11 @@
 package controllers;
 
 import database.ModifyCollectionClients;
+import database.ModifyTableClients;
+import database.SelectFromDB;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +24,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ControllerForm1 {
     private ModifyCollectionClients clients = new ModifyCollectionClients();
@@ -86,34 +91,49 @@ public class ControllerForm1 {
         table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                    controllerForm2.setClient(table.getSelectionModel().getSelectedItem());
+                controllerForm2.setClient(table.getSelectionModel().getSelectedItem());
             }
         });
     }
 
-    public void SearchData(ActionEvent actionEvent) {
+    public void SearchData() {
+        clients.getClients().clear();
+        ModifyCollectionClients forSelect = new ModifyCollectionClients();
+        try {
+            SelectFromDB.select(forSelect.getDB_DRIVER(), forSelect.getDB_CONNECTION(), forSelect.getDB_USER(),
+                    forSelect.getDB_PASSWORD(), search.getText(), clients.getClients());
+        }
+        catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        updateAmountOfRecords();
     }
 
     public void removeClient() {
-        clients.remove(controllerForm2.getClient());
+        if (controllerForm2.getClient() != null) {
+            clients.getClients().clear();
+            clients.remove(controllerForm2.getClient());
+        }
     }
 
     public void updateClient() {
         if (controllerForm2.getClient() != null) {
+            clients.getClients().clear();
             controllerForm2.setIdNumber(controllerForm2.getClient().getIdNumber());
             controllerForm2.setName(controllerForm2.getClient().getFirstName());
             controllerForm2.setSurname(controllerForm2.getClient().getLastName());
         }
         stage.showAndWait();
-        if (controllerForm2.getClient() != null) { clients.update(controllerForm2.getClient()); }
-        controllerForm2.setClient(null);
-        table.getColumns().clear();
-        table.getColumns().addAll(idNumberColumn, firstNameColumn, lastNameColumn);
+        if (controllerForm2.getClient() != null) {
+            clients.update(controllerForm2.getClient());
+            controllerForm2.setClient(null);
+        }
     }
 
     public void addClient() {
         stage.showAndWait();
         if (controllerForm2.getClient() != null) {
+            clients.getClients().clear();
             clients.insert(controllerForm2.getClient());
             controllerForm2.setClient(null);
         }

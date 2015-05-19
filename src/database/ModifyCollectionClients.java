@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * Created by Юлия on 07.05.2015.
  */
 public class ModifyCollectionClients implements Intrfc {
-    private ObservableList<Client> clients = FXCollections.observableArrayList();
+    private static ObservableList<Client> clients = FXCollections.observableArrayList();
 
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/database";
@@ -38,45 +38,46 @@ public class ModifyCollectionClients implements Intrfc {
 
     @Override
     public void insert(Client client) {
-        clients.add(client);
         try {
-            new ModifyTableClients().insert(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), client);
+            ModifyTableClients.insert(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), client);
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        fillCollection();
     }
 
     @Override
     public void update(Client client) {
-        for (Client i: clients) {
+/*        for (Client i: clients) {
             if (i.getIdNumber() == client.getIdNumber()) {
                 i.setFirstName(client.getFirstName());
                 i.setLastName(client.getLastName());
             }
-        }
+        }*/
         try {
-            new ModifyTableClients().update(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), client);
+            ModifyTableClients.update(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), client);
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        fillCollection();
     }
 
     @Override
     public void remove(Client client) {
         try {
-            new ModifyTableClients().remove(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), client.getIdNumber());
+            ModifyTableClients.remove(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), client.getIdNumber());
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        clients.remove(client);
+        fillCollection();
     }
 
     public void fillCollection () {
         try {
-            new SelectFromDB().selectRecordsFromDbClientsTable(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(),
+            SelectFromDB.selectRecordsFromDbClientsTable(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(),
                     getDB_PASSWORD(), clients);
         }
         catch (SQLException | ClassNotFoundException e) {
