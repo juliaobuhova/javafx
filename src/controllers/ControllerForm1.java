@@ -98,14 +98,16 @@ public class ControllerForm1 {
 
     public void SearchData() {
         clients.getClients().clear();
-        ModifyCollectionClients forSelect = new ModifyCollectionClients();
+        //Поиск в бд
         try {
-            SelectFromDB.select(forSelect.getDB_DRIVER(), forSelect.getDB_CONNECTION(), forSelect.getDB_USER(),
-                    forSelect.getDB_PASSWORD(), search.getText(), clients.getClients());
+            SelectFromDB.select(clients.getDB_DRIVER(), clients.getDB_CONNECTION(), clients.getDB_USER(),
+                    clients.getDB_PASSWORD(), search.getText(), clients.getClients());
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        //Поиск в коллекции
+
         updateAmountOfRecords();
     }
 

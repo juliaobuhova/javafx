@@ -85,4 +85,8 @@ public class ModifyCollectionClients implements Intrfc {
         }
     }
 
+    public void search (String search) {
+
+    }
+
 }
