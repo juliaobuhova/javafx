@@ -32,6 +32,10 @@ public class ModifyCollectionClients implements Intrfc {
         return DB_PASSWORD;
     }
 
+    public static void setClients(ObservableList<Client> clients) {
+        ModifyCollectionClients.clients = clients;
+    }
+
     public ObservableList<Client> getClients() {
         return clients;
     }
@@ -49,12 +53,6 @@ public class ModifyCollectionClients implements Intrfc {
 
     @Override
     public void update(Client client) {
-/*        for (Client i: clients) {
-            if (i.getIdNumber() == client.getIdNumber()) {
-                i.setFirstName(client.getFirstName());
-                i.setLastName(client.getLastName());
-            }
-        }*/
         try {
             ModifyTableClients.update(getDB_DRIVER(), getDB_CONNECTION(), getDB_USER(), getDB_PASSWORD(), client);
         }
@@ -83,10 +81,6 @@ public class ModifyCollectionClients implements Intrfc {
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public void search (String search) {
-
     }
 
 }

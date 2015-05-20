@@ -30,10 +30,7 @@ public class ControllerForm2 {
         if (idNumber.getLength() != 0 && name.getLength() != 0 && surname.getLength() != 0) {
             client = new Client(getIdNumber(), getName(), getSurname());
         }
-        idNumber.setText("");
-        name.setText("");
-        surname.setText("");
-        stage.close();
+        Exit();
     }
 
     public int getIdNumber() {

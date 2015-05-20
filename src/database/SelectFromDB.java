@@ -1,7 +1,6 @@
 package database;
 
 import object.Client;
-import database.DBConnection;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

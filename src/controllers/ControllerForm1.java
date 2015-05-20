@@ -1,16 +1,12 @@
 package controllers;
 
 import database.ModifyCollectionClients;
-import database.ModifyTableClients;
-import database.SelectFromDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import object.Client;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,9 +18,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import object.Client;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ControllerForm1 {
     private ModifyCollectionClients clients = new ModifyCollectionClients();
@@ -32,6 +29,7 @@ public class ControllerForm1 {
     private FXMLLoader loader = new FXMLLoader();
     private ControllerForm2 controllerForm2;
     private Stage stage = new Stage();
+    private ArrayList<Client> filteredData = new ArrayList<>(clients.getClients());
 
     @FXML
     private TableView<Client> table;
@@ -96,9 +94,10 @@ public class ControllerForm1 {
         });
     }
 
-    public void SearchData() {
+    public void searchData() {
         clients.getClients().clear();
-        //Поиск в бд
+        //Поиск в базе данных
+/*
         try {
             SelectFromDB.select(clients.getDB_DRIVER(), clients.getDB_CONNECTION(), clients.getDB_USER(),
                     clients.getDB_PASSWORD(), search.getText(), clients.getClients());
@@ -106,15 +105,40 @@ public class ControllerForm1 {
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+*/
         //Поиск в коллекции
 
+        clients.fillCollection();
+        filteredData.clear();
+        for (Client i: clients.getClients()) {
+            if (compareFilterAndData(i)) {
+                filteredData.add(i);
+            }
+        }
+        clients.getClients().clear();
+        clients.getClients().addAll(filteredData);
         updateAmountOfRecords();
+
+    }
+
+    private boolean compareFilterAndData(Client client) {
+        if (search.getText() == null || search.getText().isEmpty()) {
+            return true;
+        }
+        if (client.getFirstName().toLowerCase().contains(search.getText().toLowerCase())) {
+            return true;
+        }
+        else if (client.getLastName().toLowerCase().contains(search.getText().toLowerCase())) {
+            return true;
+        }
+        return false;
     }
 
     public void removeClient() {
         if (controllerForm2.getClient() != null) {
             clients.getClients().clear();
             clients.remove(controllerForm2.getClient());
+            controllerForm2.setClient(null);
         }
     }
 
