@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
-    <file url="file://$PROJECT_DIR$/src/sample/Main.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/sample/controllers/ControllerForm1.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/sample/style/mainstyle.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/sample/style/style.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/controllers/ControllerForm1.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/controllers/ControllerForm2.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/database/ModifyCollectionClients.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/database/ModifyTableClients.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/database/SelectFromDB.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/object/Client.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/start/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/style/mainstyle.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/style/style.css" charset="UTF-8" />
   </component>
 </project>

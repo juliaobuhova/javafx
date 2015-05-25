@@ -1,4 +1,4 @@
-package sample;
+package start;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,13 +11,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/windows/form1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/windows/form1.fxml"));
         primaryStage.setTitle("Work with database");
         primaryStage.setMinHeight(525);
         primaryStage.setMinWidth(500);
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 500, 500));
-        primaryStage.getIcons().add(new Image("/sample/style/icon.png"));
+        primaryStage.getIcons().add(new Image("/style/icon.png"));
         primaryStage.show();
     }
 
